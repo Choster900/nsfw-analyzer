@@ -1,55 +1,28 @@
-# Analizador NSFW Simple
+# NSFW Image Analyzer
 
-Aplicación simple de React Native con Expo para analizar contenido NSFW en imágenes.
+Aplicación móvil para detectar contenido inapropiado en imágenes usando inteligencia artificial.
+
+## Tecnologías de Análisis
+
+- **NSFWJS** - Modelo de deep learning pre-entrenado para clasificación de contenido NSFW
+- **TensorFlow.js** - Framework de ML que ejecuta el modelo directamente en el dispositivo
+- **Detección Multi-Modal** - Sistema local que combina análisis de píxeles, patrones de color y características faciales
+- **React Native + Expo** - Framework móvil multiplataforma
+
+## Cómo Funciona
+
+1. El usuario selecciona una imagen de su galería
+2. La imagen se procesa y convierte en tensor usando TensorFlow.js
+3. NSFWJS clasifica la imagen en 5 categorías (Neutral, Drawing, Sexy, Porn, Hentai)
+4. El detector multi-modal analiza patrones adicionales (piel, colores, formas)
+5. Se combina toda la información para determinar si el contenido es seguro
+6. Los resultados se muestran con alertas visuales si se detecta contenido inapropiado
 
 ## Instalación
 
 ```bash
 npm install --legacy-peer-deps
-```
-
-## Uso
-
-```bash
 npm start
 ```
 
-Luego abre Expo Go en tu teléfono y escanea el código QR.
-
-## Funcionalidad
-
-- Selecciona una imagen de tu galería
-- La imagen se analiza automáticamente con NSFWJS
-- Muestra los porcentajes de cada categoría
-- Los resultados detallados se imprimen en la consola
-
-## Ejemplo de salida en consola
-
-```
-========================================
-ANÁLISIS COMPLETADO
-========================================
-Resultados del análisis NSFW:
-
-1. Neutral: 85.30%
-2. Drawing: 8.12%
-3. Sexy: 4.50%
-4. Porn: 1.20%
-5. Hentai: 0.88%
-
-Clasificación principal: Neutral (85.30%)
-========================================
-```
-
-## Categorías
-
-- **Neutral**: Contenido normal
-- **Drawing**: Dibujos/ilustraciones
-- **Sexy**: Contenido sugestivo
-- **Porn**: Contenido pornográfico
-- **Hentai**: Contenido hentai
-
-## Requisitos
-
-- Node.js
-- Expo Go app (SDK 54) en tu dispositivo móvil
+Escanea el código QR con Expo Go desde tu dispositivo móvil.

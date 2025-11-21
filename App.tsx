@@ -31,27 +31,25 @@ function AppContent(): JSX.Element {
 
   // Initialize TensorFlow on mount
   useEffect(() => {
+    console.log('🚀 [APP] Inicializando aplicación...');
     const initTensorFlow = async (): Promise<void> => {
       try {
+        console.log('⏳ [TENSORFLOW] Cargando módulo TensorFlow.js...');
         await tf.ready();
-        console.log('✅ TensorFlow initialized');
+        console.log('✅ [TENSORFLOW] TensorFlow.js inicializado correctamente');
+        console.log(`📊 [TENSORFLOW] Backend: ${tf.getBackend()}`);
       } catch (error) {
-        console.error('❌ TensorFlow initialization failed:', error);
+        console.error('❌ [TENSORFLOW] Error al inicializar TensorFlow.js:', error);
       }
     };
 
     initTensorFlow();
   }, []);
 
-  // Handle image selection
-  const handlePickImage = async (): Promise<void> => {
-    clearResults();
-    await pickImage();
-  };
-
   // Auto-analyze when image changes
   useEffect(() => {
     if (image) {
+      console.log('🖼️ [APP] Nueva imagen detectada, iniciando análisis automático...');
       analyzeImage(image);
     }
   }, [image, analyzeImage]);
@@ -73,7 +71,11 @@ function AppContent(): JSX.Element {
           {/* Action Button */}
           <TouchableOpacity
             style={[styles.button, loading && styles.buttonDisabled]}
-            onPress={handlePickImage}
+            onPress={() => {
+              console.log('👆 [APP] Usuario presionó botón de selección de imagen');
+              clearResults();
+              pickImage();
+            }}
             disabled={loading}
             activeOpacity={0.7}
           >
